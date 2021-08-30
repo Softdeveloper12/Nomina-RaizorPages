@@ -1,0 +1,124 @@
+﻿@page
+@model Practica2_RaizorPages.Pages.NominaModel
+@{
+    double total_descuento = Model.AFP(@Model.Salario) + Model.SFS(@Model.Salario) + Model.IRS(@Model.Salario);
+}
+
+<div class="text-center">
+    <h1 class="display-4">Bienvenido a mi Nomina con Raizor Pages</h1>
+    <br>
+    <br />
+    <center>
+        <table border=" 5" class="default">
+
+            <tr>
+
+                <th>Nombre</th>
+
+                <th>Apellido</th>
+
+                <th>Cargo</th>
+
+                <th>Salario Mensual</th>
+
+                <th>SFS</th>
+
+                <th>AFP</th>
+
+                <th>ISR</th>
+
+                <th>Total de Descuentos</th>
+
+                <th>Salario Neto</th>
+
+            </tr>
+
+            <tr>
+
+                <td>
+                    <ul>
+                        @foreach (var nom in Model.Nombres)
+                        {
+                            <li> @nom</li>
+                        }
+                    </ul>
+                </td>
+
+                <td>
+                    <ul>
+                        @foreach (var ap in Model.Apellidos)
+                        {
+                            <li> @ap</li>
+                        }
+                    </ul>
+                </td>
+
+                <td>
+                    <ul>
+                        @foreach (var car in Model.Cargos)
+                        {
+                            <li> @car</li>
+                        }
+                    </ul>
+                </td>
+
+                <td>
+                    <ul>
+                        @foreach (var salary in Model.Salarios)
+                        {
+                            <li>@salary</li>
+                        }
+                    </ul>
+                </td>
+
+                <td>
+                    <ul>
+                        @foreach (var sfs in Model.Salarios)
+                        {
+                            <li>@Model.SFS(sfs)</li>
+                        }
+                    </ul>
+                </td>
+                <td>
+                    <ul>
+                        @foreach (var afp in Model.Salarios)
+                        {
+                            <li>@Model.AFP(afp)</li>
+                        }
+                    </ul>
+                </td>
+                <td>
+                    <ul>
+                        @foreach (var irs in Model.Salarios)
+                        {
+                            <li>@Model.IRS(irs)</li>
+                        }
+                    </ul>
+                </td>
+                <td>
+                    <ul>
+                        @foreach (var total_dec in Model.Salarios)
+                        {
+                            <li>@Model.Total_descuento(Model.SFS(total_dec), Model.AFP(total_dec), Model.IRS(total_dec)) </li>
+                        }
+                    </ul>
+                </td>
+                <td>
+                    <ul>
+                        @foreach (var salaryNeto in Model.Salarios)
+                        {
+                            <li>@Model.SalarioNeto(salaryNeto,Model.Total_descuento(Model.SFS(salaryNeto), Model.AFP(salaryNeto), Model.IRS(salaryNeto))) </li>
+                        }
+                    </ul>
+                </td>
+
+                <td>
+                </td>
+
+            </tr>
+
+        </table>
+    </center>
+
+
+</div>
